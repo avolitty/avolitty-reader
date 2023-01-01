@@ -5,19 +5,24 @@ void AvolittyReaderA(FILE **a, const char *b) {
 	return;
 }
 
-void AvolittyReaderB(FILE *a, signed long int *b, signed short int c, unsigned char *d, signed char *e) {
-	size_t f = (size_t) c;
+void AvolittyReaderB(FILE *a, signed long int *b, signed short int *c, unsigned char *d, signed char *e) {
+	size_t f = (size_t) *c;
 	size_t g = 1;
 	size_t h;
-	signed long int i = 0L;
-	signed short int j = 0;
+	long i = (long) *b;
+	signed long int j = 0L;
+	int k = 0;
+	signed short int l = 0;
+	fseek(a, i, k);
 	h = fread(d, g, f, a);
-	i = (signed long int) h;
-	*b = *b + i;
-	j = (signed short int) h;
+	j = (signed long int) h;
+	*b = i + j;
+	l = (signed short int) h;
 
-	if (c != j) {
+	if (*c != l) {
+		*c = l;
 		*e = 1;
+		fclose(a);
 	}
 
 	return;

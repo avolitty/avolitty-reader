@@ -5,16 +5,27 @@ int main() {
 	FILE *a;
 	FILE **b = &a;
 	signed long int c = 0L;
-	signed long int *d = &c;
-	signed short int e = 32767;
-	const char *f = "file";
-	unsigned char g[32767];
-	signed char h = 0;
-	signed char *i = &h;
-	AvolittyReaderA(b, f);
+	signed long int d = 0L;
+	signed long int *e = &c;
+	signed short int f = 32767;
+	signed short int g;
+	signed short int *h = &f;
+	const char *i = "file";
+	unsigned char j[32767];
+	unsigned char *k = j;
+	signed char l = 0;
+	signed char *m = &l;
+	AvolittyReaderA(b, i);
 
-	while (h == 0) {
-		AvolittyReaderB(a, d, e, g, i);
+	while (l == 0) {
+		AvolittyReaderB(a, e, h, k, m);
+		g = 0;
+
+		while (f != g) {
+			printf("%c", j[g++]);
+		}
+
+		d += c;
 	}
 
 	return 0;
