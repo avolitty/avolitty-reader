@@ -25,7 +25,7 @@ int main() {
 			printf("%c", j[g++]);
 		}
 
-		d += c;
+		d += (signed long int) f;
 	}
 
 	return 0;
