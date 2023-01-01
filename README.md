@@ -24,7 +24,7 @@ Create byte arrays from file streams using ANSI C89 with a fast and unique file 
 [Patreon](https://www.patreon.com/avolitty)
 
 #### License
-[MIT](https://github.com/avolitty/avolitty-randomizer/blob/main/LICENSE)
+[MIT](https://github.com/avolitty/avolitty-reader/blob/main/LICENSE)
 
 #### Usage
 Clone the repository in the current directory with `git`.
