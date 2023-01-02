@@ -39,7 +39,7 @@ Navigate to the cloned repository's root directory with `cd`.
 cd avolitty-reader
 ```
 
-The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with the `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
+The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
 
 ``` c
 #include <stdio.h>
@@ -78,7 +78,7 @@ int main() {
 
 `AvolittyReaderA()` opens a file stream from a file path.
 
-The first argument variable `b` is a pointer to the `FILE` pointer of `a`.
+The first argument variable `b` is a pointer to the `FILE` pointer of the variable `a`.
 
 `AvolittyReaderA()` opens a file stream from this pointer for reading.
 
