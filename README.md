@@ -1,4 +1,4 @@
-## Avolitty Randomizer
+## Avolitty Reader
 
 #### Author
 William Parsons <[avolitty@gmail.com](avolitty@gmail.com)>
