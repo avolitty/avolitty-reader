@@ -1,13 +1,13 @@
 ## Avolitty Reader
 
 #### Author
-William Parsons <[avolitty@gmail.com](avolitty@gmail.com)>
+William Parsons <[avolitty.com](https://avolitty.com/)>
 
 #### Description
-Create byte arrays from file streams using ANSI C89 with a fast and unique file reading algorithm.
+Create byte arrays from file streams using C89 with a fast and unique file reading algorithm.
 
 - Allocates memory with stack instead of heap
-- ANSI C89 compilation option -std=c89 supported
+- C89 compilation option -std=c89 supported up to c2x
 - Closes open file stream at EOF
 - Compiles with Clang or GCC
 - Conforms to strict ISO C with -pedantic-errors enabled
@@ -21,7 +21,7 @@ Create byte arrays from file streams using ANSI C89 with a fast and unique file 
 - Sets a specific file byte offset position
 
 #### Funding
-[Patreon](https://www.patreon.com/avolitty)
+[Avolitty](https://avolitty.com/donate/)
 
 #### License
 [MIT](https://github.com/avolitty/avolitty-reader/blob/main/LICENSE)
@@ -56,13 +56,12 @@ int main() {
 	signed short int *h = &f;
 	const char *i = "file";
 	unsigned char j[32767];
-	unsigned char *k = j;
-	signed char l = 0;
-	signed char *m = &l;
+	signed char k = 0;
+	signed char *l = &k;
 	AvolittyReaderA(b, i);
 
-	while (l == 0) {
-		AvolittyReaderB(a, e, h, k, m);
+	while (k == 0) {
+		AvolittyReaderB(a, e, h, j, l);
 		g = 0;
 
 		while (f != g) {
@@ -108,24 +107,22 @@ The variable `f` is a `signed short int` defined as the byte size of each chunke
 
 The default value should be `32767` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
 
-The fourth argument variable `k` is a pointer to modify the value of the variable `j`.
-
-The variable `j` is an `unsigned char` array to store the chunked file data result.
+The fourth argument variable `j` is a pointer to modify an `unsigned char` array to store the chunked file data result.
 
 The default value should be an empty array and `AvolittyReaderB()` defines it as the bytes from the chunked file data result.
 
 The array length should match the value of `f` with a default value of `32767`.
 
-The fifth argument variable `m` is a pointer to modify the value of the variable `l`.
+The fifth argument variable `l` is a pointer to modify the value of the variable `k`.
 
-The variable `l` is a `signed char` defined as the file reading status.
+The variable `k` is a `signed char` defined as the file reading status.
 
 The default value should be `0` and `AvolittyReaderB()` defines it as `1` when the end of the file is reached.
 
 An executable binary for testing can be compiled with either `clang` or `gcc`.
 
 ``` console
-gcc -O3 -o avolitty-reader -pedantic-errors -std=c89 src/avolitty-reader.c test/main.c
+gcc -O3 -o avolitty-reader -std=c89 src/avolitty-reader.c test/main.c
 ```
 
 `-O3` compiles with maximum optimization and `-std=c89` compiles with C89 standards.
@@ -143,4 +140,3 @@ echo "123456789" > file
 The exact size of bytes traversed is defined in the variable `c` while including skipped bytes.
 
 The exact size of bytes read is defined in the variable `d` while omitting any skipped bytes.
-

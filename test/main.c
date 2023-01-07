@@ -12,13 +12,12 @@ int main() {
 	signed short int *h = &f;
 	const char *i = "file";
 	unsigned char j[32767];
-	unsigned char *k = j;
-	signed char l = 0;
-	signed char *m = &l;
+	signed char k = 0;
+	signed char *l = &k;
 	AvolittyReaderA(b, i);
 
-	while (l == 0) {
-		AvolittyReaderB(a, e, h, k, m);
+	while (k == 0) {
+		AvolittyReaderB(a, e, h, j, l);
 		g = 0;
 
 		while (f != g) {
