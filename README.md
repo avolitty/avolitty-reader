@@ -81,7 +81,7 @@ The first argument variable `b` is a pointer to the `FILE` pointer of the variab
 
 The second argument variable `i` is a `const char *` string.
 
-The value should be a full path name to a file.
+The value is a full path name to a file.
 
 `AvolittyReaderB()` reads the file and returns chunked data.
 
@@ -101,11 +101,11 @@ The third argument variable `h` is a pointer to modify the value of the variable
 
 The variable `f` is a `signed short int` defined as the byte size of each chunked file data result from `AvolittyReaderB()`.
 
-The default value should be `32767` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
+The default value is `32767` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
 
 The fourth argument variable `j` is a pointer to modify an `unsigned char` array to store the chunked file data result.
 
-The default value should be an empty array and `AvolittyReaderB()` defines it as the bytes from the chunked file data result.
+The default value is an empty array and `AvolittyReaderB()` defines it as the bytes from the chunked file data result.
 
 The array length should match the value of `f` with a default value of `32767`.
 
@@ -113,7 +113,7 @@ The fifth argument variable `l` is a pointer to modify the value of the variable
 
 The variable `k` is a `signed char` defined as the file reading status.
 
-The default value should be `0` and `AvolittyReaderB()` defines it as `1` when the end of the file is reached.
+The default value is `0` and `AvolittyReaderB()` defines it as `1` when the end of the file is reached.
 
 An executable binary for testing can be compiled with either `clang` or `gcc`.
 
