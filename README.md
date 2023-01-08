@@ -75,17 +75,13 @@ int main() {
 }
 ```
 
-`AvolittyReaderA()` opens a file stream from a file path.
+`AvolittyReaderA()` opens a file stream from a file path for reading.
 
 The first argument variable `b` is a pointer to the `FILE` pointer of the variable `a`.
 
-`AvolittyReaderA()` opens a file stream from this pointer for reading.
-
-The second argument variable `g` is a `const char *` string.
+The second argument variable `i` is a `const char *` string.
 
 The value should be a full path name to a file.
-
-`AvolittyReaderA()` opens a file stream from this full path name for reading.
 
 `AvolittyReaderB()` reads the file and returns chunked data.
 
