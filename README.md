@@ -39,7 +39,7 @@ Navigate to the cloned repository's root directory with `cd`.
 cd avolitty-reader
 ```
 
-The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
+The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with the `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
 
 ``` c
 #include <stdio.h>
@@ -93,7 +93,7 @@ The second argument variable `e` is a pointer to modify the value of the variabl
 
 The variable `c` is a `signed long int` defined as the byte offset position to start file reading from.
 
-The default value should be `0L` to start at the beginning of the file unless a specific offset is required for partial file reading.
+The default value is `0L` to start at the beginning of the file unless a specific offset is required for partial file reading.
 
 `L` is the defined suffix for `signed long int` literals.
 
