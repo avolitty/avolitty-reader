@@ -18,7 +18,7 @@ signed char AvolittyReaderB(FILE *a, signed long int *b, signed short int *c, un
 	long i = (long) *b;
 	signed long int j = 0L;
 	int k = 0;
-	int l = 0;
+	int l;
 	signed short int m = 0;
 	signed char n = 0;
 

@@ -16,9 +16,9 @@ int main(void) {
 	signed char l = 0;
 	signed char m = 0;
 	signed char *n = &l;
-	m = AvolittyReaderA(b, j);
+	l = AvolittyReaderA(b, j);
 
-	if (m == 1) {
+	if (l == 1) {
 		printf("Error opening file \"%s\".", j);
 		return f;
 	}
