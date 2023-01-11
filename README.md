@@ -47,7 +47,7 @@ The following example uses code from [test/main.c](https://github.com/avolitty/a
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
-int main() {
+int main(void) {
 	FILE *a;
 	FILE **b = &a;
 	signed long int c = 0L;
@@ -60,7 +60,7 @@ int main() {
 	const char *j = "file";
 	unsigned char k[32767];
 	signed char l = 0;
-	signed char m = 0;
+	signed char m;
 	signed char *n = &l;
 	m = AvolittyReaderA(b, j);
 
