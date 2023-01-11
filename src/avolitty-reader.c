@@ -21,13 +21,16 @@ signed char AvolittyReaderB(FILE *a, signed long int *b, signed short int *c, un
 	int l = 0;
 	signed short int m = 0;
 	signed char n = 0;
-	l = fseek(a, i, k);
 
-	if (l == -1 && SEEK_SET != 0) {
-		*e = 1;
-		n = 1;
-		fclose(a);
-		return n;
+	if (*b != 0L) {
+		l = fseek(a, i, k);
+
+		if (l == -1 && SEEK_SET != 0) {
+			*e = 1;
+			n = 1;
+			fclose(a);
+			return n;
+		}
 	}
 
 	h = fread(d, g, f, a);
