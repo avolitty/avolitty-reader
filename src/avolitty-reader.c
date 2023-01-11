@@ -1,29 +1,45 @@
 #include <stdio.h>
 
-void AvolittyReaderA(FILE **a, const char *b) {
+signed char AvolittyReaderA(FILE **a, const char *b) {
+	signed char c = 0;
 	*a = fopen(b, "rb");
-	return;
+
+	if (*a == 0) {
+		c = 1;
+	}
+
+	return c;
 }
 
-void AvolittyReaderB(FILE *a, signed long int *b, signed short int *c, unsigned char *d, signed char *e) {
+signed char AvolittyReaderB(FILE *a, signed long int *b, signed short int *c, unsigned char *d, signed char *e) {
 	size_t f = (size_t) *c;
 	size_t g = 1;
 	size_t h;
 	long i = (long) *b;
 	signed long int j = 0L;
 	int k = 0;
-	signed short int l = 0;
-	fseek(a, i, k);
+	int l = 0;
+	signed short int m = 0;
+	signed char n = 0;
+	l = fseek(a, i, k);
+
+	if (l == -1 && SEEK_SET != 0) {
+		*e = 1;
+		n = 1;
+		fclose(a);
+		return n;
+	}
+
 	h = fread(d, g, f, a);
 	j = (signed long int) h;
 	*b = i + j;
-	l = (signed short int) h;
+	m = (signed short int) h;
 
-	if (*c != l) {
-		*c = l;
+	if (*c != m) {
+		*c = m;
 		*e = 1;
 		fclose(a);
 	}
 
-	return;
+	return n;
 }

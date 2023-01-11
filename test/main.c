@@ -7,25 +7,38 @@ int main() {
 	signed long int c = 0L;
 	signed long int d = 0L;
 	signed long int *e = &c;
-	signed short int f = 32767;
-	signed short int g;
-	signed short int *h = &f;
-	const char *i = "file";
-	unsigned char j[32767];
-	signed char k = 0;
-	signed char *l = &k;
-	AvolittyReaderA(b, i);
+	int f = 0;
+	signed short int g = 32767;
+	signed short int h;
+	signed short int *i = &g;
+	const char *j = "file";
+	unsigned char k[32767];
+	signed char l = 0;
+	signed char m = 0;
+	signed char *n = &l;
+	m = AvolittyReaderA(b, j);
 
-	while (k == 0) {
-		AvolittyReaderB(a, e, h, j, l);
-		g = 0;
-
-		while (f != g) {
-			printf("%c", j[g++]);
-		}
-
-		d += (signed long int) f;
+	if (m == 1) {
+		printf("Error opening file \"%s\".", j);
+		return f;
 	}
 
-	return 0;
+	while (l == 0) {
+		m = AvolittyReaderB(a, e, i, k, n);
+
+		if (m == 1) {
+			printf("Error reading file \"%s\" because SEEK_SET is a non-zero value.", j);
+			return f;
+		}
+
+		h = 0;
+
+		while (g != h) {
+			printf("%c", k[h++]);
+		}
+
+		d += (signed long int) g;
+	}
+
+	return f;
 }
