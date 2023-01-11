@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
-int main() {
+int main(void) {
 	FILE *a;
 	FILE **b = &a;
 	signed long int c = 0L;
