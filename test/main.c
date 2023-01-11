@@ -14,11 +14,11 @@ int main(void) {
 	const char *j = "file";
 	unsigned char k[32767];
 	signed char l = 0;
-	signed char m = 0;
+	signed char m;
 	signed char *n = &l;
-	l = AvolittyReaderA(b, j);
+	m = AvolittyReaderA(b, j);
 
-	if (l == 1) {
+	if (m == 1) {
 		printf("Error opening file \"%s\".", j);
 		return f;
 	}
