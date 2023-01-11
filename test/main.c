@@ -27,7 +27,7 @@ int main() {
 		m = AvolittyReaderB(a, e, i, k, n);
 
 		if (m == 1) {
-			printf("Error reading file \"%s\" because SEEK_SET is a non-zero value.", j);
+			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", j);
 			return f;
 		}
 

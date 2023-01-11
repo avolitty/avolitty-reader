@@ -73,7 +73,7 @@ int main() {
 		m = AvolittyReaderB(a, e, i, k, n);
 
 		if (m == 1) {
-			printf("Error reading file \"%s\" because SEEK_SET is a non-zero value.", j);
+			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", j);
 			return f;
 		}
 
@@ -108,7 +108,7 @@ The value is a full path name to a file.
 The return value variable `m` is a `signed char` defined as the following error statuses.
 
 - `0` Success
-- `1` Error reading file \"%s\" because SEEK_SET is a non-zero value.
+- `1` Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.
 
 The first argument variable `a` is a `FILE *` pointer.
 
