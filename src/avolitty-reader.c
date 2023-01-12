@@ -2,7 +2,7 @@
 
 unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {
 	unsigned char d = 0U;
-	*a = fopen((const char *) c, "rb");
+	*a = fopen((const char *) c, (const char *) "rb");
 
 	if (*a == 0) {
 		d = 1U;

@@ -166,7 +166,7 @@ gcc -O3 -o avolitty-reader -std=c89 src/avolitty-reader.c test/main.c
 
 It outputs an executable binary file named `avolitty-reader` in the current directory.
 
-The output from executing `./avolitty-reader file` is the full contents of `file` located at the relative path.
+The output from executing `./avolitty-reader file` is the contents of a file.
 
 ``` console
 echo "123456789" > file
@@ -180,6 +180,8 @@ echo "123456789" > file
 ./avolitty-reader non-existent
 # Error opening file "non-existent".
 ```
+
+The first command line argument value `file` is the file name to read.
 
 The exact size of bytes traversed from the offset is defined in the variable `e` while including skipped bytes.
 
