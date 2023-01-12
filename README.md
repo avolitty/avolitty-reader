@@ -21,7 +21,8 @@ Create byte arrays from file streams using C89 with a fast and unique file readi
 - Reads from standard files, FIFOs, pipes and sockets
 - Returns chunked file data in an array
 - Returns the current file byte offset position
-- Sets a specific file byte offset position
+- Sets a file byte offset position
+- Sets a number of bytes to skip for each file data chunk
 
 #### Funding
 [Avolitty](https://avolitty.com/donate/)
@@ -51,45 +52,52 @@ The following example uses code from [test/main.c](https://github.com/avolitty/a
 int main(int a, char *b[]) {
 	FILE *c;
 	FILE **d = &c;
-	unsigned long int e = 0L;
-	unsigned long int f = 0L;
-	unsigned long int *g = &e;
-	unsigned short int h = 65535;
-	unsigned short int i;
-	unsigned short int *j = &h;
-	unsigned char k[65535];
-	unsigned char l = 0;
-	unsigned char m;
-	unsigned char *n = (unsigned char *) b[1];
-	unsigned char *o = &l;
+	unsigned long int e = 0UL;
+	unsigned long int f = 0UL;
+	unsigned long int g = 0UL;
+	unsigned long int *h = &f;
+	unsigned long int i = 65536UL;
+	unsigned long int j;
+	unsigned long int *k = &i;
+	unsigned char l[65536UL];
+	unsigned char m = 0U;
+	unsigned char n;
+	unsigned char *o = (unsigned char *) b[1];
+	unsigned char *p = &m;
 
 	if (a == 1) {
-		printf("Error reading file without required file name argument.", n);
+		printf("Error reading file without required file name argument.", o);
 		return a;
 	}
 
-	m = AvolittyReaderA(d, n);
+	n = AvolittyReaderA(d, e, o);
 
-	if (m == 1) {
-		printf("Error opening file \"%s\".", n);
+	if (n == 1U) {
+		printf("Error opening file \"%s\".", o);
 		return a;
 	}
 
-	while (l == 0) {
-		m = AvolittyReaderB(c, g, j, k, o);
+	e = 0UL;
 
-		if (m == 1) {
-			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", n);
+	while (m == 0U) {
+		n = AvolittyReaderB(c, h, k, l, p);
+
+		if (n != 0U) {
+			if (n == 1U) {
+				printf("Error reading file \"%s\" at byte \"%lu\".", o, e);
+			}
+
 			return a;
 		}
 
-		i = 0;
+		j = 0UL;
 
-		while (h != i) {
-			printf("%c", k[i++]);
+		while (i != j) {
+			printf("%c", l[j++]);
 		}
 
-		f += (unsigned long int) h;
+		e += f + i;
+		g += i;
 	}
 
 	return a;
@@ -98,51 +106,55 @@ int main(int a, char *b[]) {
 
 `AvolittyReaderA()` opens a file stream from a file path for reading.
 
-The return value variable `m` is an `unsigned char` defined as the following error statuses.
+The return value variable `n` is an `unsigned char` defined as the following error statuses.
 
 - `0` Success.
 - `1` Error opening file "{file}".
 
-The first argument variable `d` is a pointer to the `FILE` pointer of the variable `c`.
+The first argument variable `d` is a pointer to modify the value of the variable `c`.
 
-The second argument variable `n` is an `unsigned char *` string defined from the first command line argument value as a full path name to a file.
+The variable `c` is a `FILE *` pointer.
+
+The second argument variable `e` is an `unsigned long int` defined as the number of bytes to skip from the beginning of the file.
+
+The third argument variable `o` is an `unsigned char *` string defined from the first command line argument value as a full path name to a file.
 
 `AvolittyReaderB()` reads the file and returns chunked data.
 
-The return value variable `m` is an `unsigned char` defined as the following error statuses.
+The return value variable `n` is an `unsigned char` defined as the following error statuses.
 
 - `0` Success.
-- `1` Error reading file "{file}" because SEEK_SET is defined as a non-zero value.
+- `1` Error reading file "{file}" at byte {position}.
 
 The first argument variable `c` is a `FILE *` pointer.
 
 The value is the open file stream result from `AvolittyReaderA()`.
 
-The second argument variable `g` is a pointer to modify the value of the variable `e`.
+The second argument variable `h` is a pointer to modify the value of the variable `f`.
 
-The variable `e` is an `unsigned long int` defined as the byte offset position to start file reading from.
+The variable `f` is an `unsigned long int` defined as the byte offset position to start file reading from.
 
-The default value is `0L` to start at the beginning of the file unless a specific offset is required for partial file reading.
+The default value is `0UL` to start at the beginning of the file unless a specific offset is required for partial file reading.
 
-`L` is the defined suffix for all `int` type literals with the `long` modifier.
+`UL` is the defined suffix for `unsigned long int` type literals.
 
-The third argument variable `j` is a pointer to modify the value of the variable `h`.
+The third argument variable `k` is a pointer to modify the value of the variable `i`.
 
-The variable `h` is an `unsigned short int` defined as the byte size of each chunked file data result from `AvolittyReaderB()`.
+The variable `i` is an `unsigned long int` defined as the byte size of each chunked file data result from `AvolittyReaderB()`.
 
-The default value is `65535` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
+The default value is `65536UL` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
 
-The fourth argument variable `k` is a pointer to modify an `unsigned char` array to store the chunked file data result.
+The fourth argument variable `l` is a pointer to modify an `unsigned char` array to store the chunked file data result.
 
 The default value is an empty array and `AvolittyReaderB()` defines it as the bytes from the chunked file data result.
 
-The array length should match the value of `h` with a default value of `65535`.
+The array length should match the value of `i` with a default value of `65536UL`.
 
-The fifth argument variable `o` is a pointer to modify the value of the variable `l`.
+The fifth argument variable `p` is a pointer to modify the value of the variable `m`.
 
-The variable `l` is an `unsigned char` defined as the file reading status.
+The variable `m` is an `unsigned char` defined as the file reading status.
 
-The default value is `0` and `AvolittyReaderB()` defines it as `1` when the end of the file is reached.
+The default value is `0U` and `AvolittyReaderB()` defines it as `1U` when the end of the file is reached.
 
 An executable binary for testing can be compiled with either `clang` or `gcc`.
 
@@ -169,6 +181,6 @@ echo "123456789" > file
 # Error opening file "non-existent".
 ```
 
-The exact size of bytes traversed is defined in the variable `e` while including skipped bytes.
+The exact size of bytes traversed from the initial offset is defined in the variable `e` while including skipped bytes.
 
-The exact size of bytes read is defined in the variable `f` while omitting any skipped bytes.
+The exact size of bytes read from the initial offset is defined in the variable `g` while omitting any skipped bytes.

@@ -4,45 +4,52 @@
 int main(int a, char *b[]) {
 	FILE *c;
 	FILE **d = &c;
-	unsigned long int e = 0L;
-	unsigned long int f = 0L;
-	unsigned long int *g = &e;
-	unsigned short int h = 65535;
-	unsigned short int i;
-	unsigned short int *j = &h;
-	unsigned char k[65535];
-	unsigned char l = 0;
-	unsigned char m;
-	unsigned char *n = (unsigned char *) b[1];
-	unsigned char *o = &l;
+	unsigned long int e = 0UL;
+	unsigned long int f = 0UL;
+	unsigned long int g = 0UL;
+	unsigned long int *h = &f;
+	unsigned long int i = 65536UL;
+	unsigned long int j;
+	unsigned long int *k = &i;
+	unsigned char l[65536UL];
+	unsigned char m = 0U;
+	unsigned char n;
+	unsigned char *o = (unsigned char *) b[1];
+	unsigned char *p = &m;
 
 	if (a == 1) {
-		printf("Error reading file without required file name argument.", n);
+		printf("Error reading file without required file name argument.", o);
 		return a;
 	}
 
-	m = AvolittyReaderA(d, n);
+	n = AvolittyReaderA(d, e, o);
 
-	if (m == 1) {
-		printf("Error opening file \"%s\".", n);
+	if (n == 1U) {
+		printf("Error opening file \"%s\".", o);
 		return a;
 	}
 
-	while (l == 0) {
-		m = AvolittyReaderB(c, g, j, k, o);
+	e = 0UL;
 
-		if (m == 1) {
-			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", n);
+	while (m == 0U) {
+		n = AvolittyReaderB(c, h, k, l, p);
+
+		if (n != 0U) {
+			if (n == 1U) {
+				printf("Error reading file \"%s\" at byte \"%lu\".", o, e);
+			}
+
 			return a;
 		}
 
-		i = 0;
+		j = 0UL;
 
-		while (h != i) {
-			printf("%c", k[i++]);
+		while (i != j) {
+			printf("%c", l[j++]);
 		}
 
-		f += (unsigned long int) h;
+		e += f + i;
+		g += i;
 	}
 
 	return a;
