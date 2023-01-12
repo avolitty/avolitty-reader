@@ -17,8 +17,8 @@ Create byte arrays from file streams using C89 with a fast and unique file readi
 - Memory-safe with well-defined behavior
 - Minified code
 - Primitive data types with automatic casting
-- Reads from standard files, FIFOs, pipes and sockets
 - Reads files from command line input file paths
+- Reads from standard files, FIFOs, pipes and sockets
 - Returns chunked file data in an array
 - Returns the current file byte offset position
 - Sets a specific file byte offset position
