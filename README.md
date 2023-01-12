@@ -108,8 +108,8 @@ int main(int a, char *b[]) {
 
 The return value variable `n` is an `unsigned char` defined as the following error statuses.
 
-- `0` Success.
-- `1` Error opening file "{file}".
+- `0U` Success.
+- `1U` Error opening file "{file}".
 
 The first argument variable `d` is a pointer to modify the value of the variable `c`.
 
@@ -123,8 +123,8 @@ The third argument variable `o` is an `unsigned char *` string defined from the 
 
 The return value variable `n` is an `unsigned char` defined as the following error statuses.
 
-- `0` Success.
-- `1` Error reading file "{file}" at byte {position}.
+- `0U` Success.
+- `1U` Error reading file "{file}" at byte {position}.
 
 The first argument variable `c` is a `FILE *` pointer.
 
@@ -181,6 +181,6 @@ echo "123456789" > file
 # Error opening file "non-existent".
 ```
 
-The exact size of bytes traversed from the initial offset is defined in the variable `e` while including skipped bytes.
+The exact size of bytes traversed from the offset is defined in the variable `e` while including skipped bytes.
 
-The exact size of bytes read from the initial offset is defined in the variable `g` while omitting any skipped bytes.
+The exact size of bytes read from the offset is defined in the variable `g` while omitting any skipped bytes.
