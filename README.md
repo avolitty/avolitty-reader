@@ -18,7 +18,8 @@ Create byte arrays from file streams using C89 with a fast and unique file readi
 - Minified code
 - Primitive data types with automatic casting
 - Reads from standard files, FIFOs, pipes and sockets
-- Returns chunked file data in an array of 32767 bytes
+- Reads files from command line input file paths
+- Returns chunked file data in an array
 - Returns the current file byte offset position
 - Sets a specific file byte offset position
 
@@ -47,96 +48,99 @@ The following example uses code from [test/main.c](https://github.com/avolitty/a
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
-int main(void) {
-	FILE *a;
-	FILE **b = &a;
-	signed long int c = 0L;
-	signed long int d = 0L;
-	signed long int *e = &c;
-	int f = 0;
-	signed short int g = 32767;
-	signed short int h;
-	signed short int *i = &g;
-	const char *j = "file";
-	unsigned char k[32767];
-	signed char l = 0;
-	signed char m;
-	signed char *n = &l;
-	m = AvolittyReaderA(b, j);
+int main(int a, char *b[]) {
+	FILE *c;
+	FILE **d = &c;
+	unsigned long int e = 0L;
+	unsigned long int f = 0L;
+	unsigned long int *g = &e;
+	unsigned short int h = 65535;
+	unsigned short int i;
+	unsigned short int *j = &h;
+	unsigned char k[65535];
+	unsigned char l = 0;
+	unsigned char m;
+	unsigned char *n = (unsigned char *) b[1];
+	unsigned char *o = &l;
+
+	if (a == 1) {
+		printf("Error reading file without required file name argument.", n);
+		return a;
+	}
+
+	m = AvolittyReaderA(d, n);
 
 	if (m == 1) {
-		printf("Error opening file \"%s\".", j);
-		return f;
+		printf("Error opening file \"%s\".", n);
+		return a;
 	}
 
 	while (l == 0) {
-		m = AvolittyReaderB(a, e, i, k, n);
+		m = AvolittyReaderB(c, g, j, k, o);
 
 		if (m == 1) {
-			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", j);
-			return f;
+			printf("Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.", n);
+			return a;
 		}
 
-		h = 0;
+		i = 0;
 
-		while (g != h) {
-			printf("%c", k[h++]);
+		while (h != i) {
+			printf("%c", k[i++]);
 		}
 
-		d += (signed long int) g;
+		f += (unsigned long int) h;
 	}
 
-	return f;
+	return a;
 }
 ```
 
 `AvolittyReaderA()` opens a file stream from a file path for reading.
 
-The return value variable `m` is a `signed char` defined as the following error statuses.
+The return value variable `m` is an `unsigned char` defined as the following error statuses.
 
-- `0` Success
-- `1` Error opening file
+- `0` Success.
+- `1` Error opening file "{file}".
 
-The first argument variable `b` is a pointer to the `FILE` pointer of the variable `a`.
+The first argument variable `d` is a pointer to the `FILE` pointer of the variable `c`.
 
-The second argument variable `i` is a `const char *` string.
-
-The value is a full path name to a file.
+The second argument variable `n` is an `unsigned char *` string defined from the first command line argument value as a full path name to a file.
 
 `AvolittyReaderB()` reads the file and returns chunked data.
 
-The return value variable `m` is a `signed char` defined as the following error statuses.
+The return value variable `m` is an `unsigned char` defined as the following error statuses.
 
-- `0` Success
-- `1` Error reading file \"%s\" because SEEK_SET is defined as a non-zero value.
+- `0` Success.
+- `1` Error reading file "{file}" because SEEK_SET is defined as a non-zero value.
 
-The first argument variable `a` is a `FILE *` pointer.
+The first argument variable `c` is a `FILE *` pointer.
 
 The value is the open file stream result from `AvolittyReaderA()`.
 
-The second argument variable `e` is a pointer to modify the value of the variable `c`.
+The second argument variable `g` is a pointer to modify the value of the variable `e`.
 
-The variable `c` is a `signed long int` defined as the byte offset position to start file reading from.
+The variable `e` is an `unsigned long int` defined as the byte offset position to start file reading from.
 
 The default value is `0L` to start at the beginning of the file unless a specific offset is required for partial file reading.
 
-`L` is the defined suffix for `signed long int` literals.
+`L` is the defined suffix for all `int` type literals with the `long` modifier.
 
-The third argument variable `h` is a pointer to modify the value of the variable `g`.
+The third argument variable `j` is a pointer to modify the value of the variable `h`.
 
-The variable `g` is a `signed short int` defined as the byte size of each chunked file data result from `AvolittyReaderB()`.
+The variable `h` is an `unsigned short int` defined as the byte size of each chunked file data result from `AvolittyReaderB()`.
 
-The default value is `32767` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
+The default value is `65535` unless a smaller memory buffer is required and `AvolittyReaderB()` defines it as the size of the chunked file data result.
 
 The fourth argument variable `k` is a pointer to modify an `unsigned char` array to store the chunked file data result.
 
 The default value is an empty array and `AvolittyReaderB()` defines it as the bytes from the chunked file data result.
 
-The array length should match the value of `g` with a default value of `32767`.
+The array length should match the value of `h` with a default value of `65535`.
 
-The fifth argument variable `n` is a pointer to modify the value of the variable `l`.
+The fifth argument variable `o` is a pointer to modify the value of the variable `l`.
 
-The variable `l` is a `signed char` defined as the file reading status.
+The variable `l` is an `unsigned char` defined as the file reading status.
 
 The default value is `0` and `AvolittyReaderB()` defines it as `1` when the end of the file is reached.
 
@@ -150,14 +154,21 @@ gcc -O3 -o avolitty-reader -std=c89 src/avolitty-reader.c test/main.c
 
 It outputs an executable binary file named `avolitty-reader` in the current directory.
 
-The output from executing `./avolitty-reader` is the full contents of the file located at the full path defined in the variable `i`.
+The output from executing `./avolitty-reader file` is the full contents of `file` located at the relative path.
 
 ``` console
 echo "123456789" > file
-./avolitty-reader
+
+./avolitty-reader file
 # 123456789
+
+./avolitty-reader
+# Error reading file without required file name argument.
+
+./avolitty-reader non-existent
+# Error opening file "non-existent".
 ```
 
-The exact size of bytes traversed is defined in the variable `c` while including skipped bytes.
+The exact size of bytes traversed is defined in the variable `e` while including skipped bytes.
 
-The exact size of bytes read is defined in the variable `d` while omitting any skipped bytes.
+The exact size of bytes read is defined in the variable `f` while omitting any skipped bytes.
