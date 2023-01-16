@@ -14,7 +14,7 @@ int main(int a, char *b[]) {
 	unsigned char l[65536UL];
 	unsigned char m = 0U;
 	unsigned char n;
-	unsigned char *o = (unsigned char *) b[1];
+	unsigned char *o = ((unsigned char *) b[1]);
 	unsigned char *p = &m;
 
 	if (a == 1) {
@@ -48,7 +48,7 @@ int main(int a, char *b[]) {
 			printf("%c", l[j++]);
 		}
 
-		e += f + i;
+		e += (f + i);
 		g += i;
 	}
 
