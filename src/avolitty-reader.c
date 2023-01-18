@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <stdio.h>
 
 unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {

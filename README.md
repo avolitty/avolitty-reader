@@ -46,6 +46,7 @@ cd avolitty-reader
 The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with the `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
 
 ``` c
+#include <stddef.h>
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
@@ -62,7 +63,7 @@ int main(int a, char *b[]) {
 	unsigned char l[65536UL];
 	unsigned char m = 0U;
 	unsigned char n;
-	unsigned char *o = (unsigned char *) b[1];
+	unsigned char *o = ((unsigned char *) b[1]);
 	unsigned char *p = &m;
 
 	if (a == 1) {
@@ -96,7 +97,7 @@ int main(int a, char *b[]) {
 			printf("%c", l[j++]);
 		}
 
-		e += f + i;
+		e += (f + i);
 		g += i;
 	}
 
