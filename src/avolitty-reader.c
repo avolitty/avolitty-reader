@@ -2,43 +2,49 @@
 #include <stdio.h>
 
 unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {
-	unsigned char d = 0U;
+	unsigned char d;
+	d = ((unsigned char) 0U);
 	*a = fopen((const char *) c, (const char *) "rb");
 
-	if (*a == 0) {
-		d = 1U;
+	if (*a == ((int) 0)) {
+		d++;
 		return d;
 	}
 
-	if (b != 0UL) {
-		fseek(*a, (long) b, SEEK_SET);
+	if (b != ((unsigned long int) 0UL)) {
+		fseek(*a, (long) b, (int) SEEK_SET);
 	}
 
 	return d;
 }
 
 unsigned char AvolittyReaderB(FILE *a, unsigned long int *b, unsigned long int *c, unsigned char *d, unsigned char *e) {
-	size_t f = (size_t) *c;
-	size_t g = 1;
+	size_t f;
+	size_t g;
 	size_t h;
-	long i = (long) *b;
-	unsigned long int j = 0UL;
-	unsigned char k = 0U;
+	long i;
+	unsigned long int j;
+	unsigned char k;
+	f = ((size_t) *b);
+	g = ((size_t) 1);
+	i = ((long) *c);
+	j = ((unsigned long int) 0UL);
+	k = ((unsigned char) 0U);
 
-	if (*b != 0UL) {
-		fseek(a, (long) *b, SEEK_CUR);
+	if (*c != ((unsigned long int) 0UL)) {
+		fseek(a, (long) *c, (int) SEEK_CUR);
 	}
 
 	h = fread(d, g, f, a);
-	j = (unsigned long int) h;
+	j = ((unsigned long int) h);
 
-	if (*c != j) {
-		if (feof(a) == 0) {
-			k = 1U;
+	if (*b != j) {
+		if (feof(a) == ((int) 0)) {
+			k = ((unsigned char) 1U);
 		}
 
-		*c = j;
-		*e = 1U;
+		*b = j;
+		*e = ((unsigned char) 1U);
 		fclose(a);
 	}
 
