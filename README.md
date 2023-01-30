@@ -78,10 +78,10 @@ int main(int a, char **b) {
 	n = ((unsigned char) 1U);
 	o = ((unsigned char) 0U);
 	p = ((unsigned char) 0U);
-	r = ((unsigned char *) b[1]);
+	r = ((unsigned char *) b[n]);
 	s = &p;
 
-	if (a == ((int) 1)) {
+	if (a == ((int) f)) {
 		printf("Error reading file without required file name argument.", r);
 		return a;
 	}
@@ -109,7 +109,8 @@ int main(int a, char **b) {
 		j = h;
 
 		while (e != j) {
-			printf("%c", m[j++]);
+			printf("%c", m[j]);
+			j++;
 		}
 
 		f += (e + g);
