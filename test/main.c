@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
@@ -17,8 +18,10 @@ int main(int a, char * * b) {
 	unsigned char o;
 	unsigned char p;
 	unsigned char q;
-	unsigned char * r;
-	unsigned char * s;
+	unsigned char r;
+	unsigned char s;
+	unsigned char * t;
+	unsigned char * u;
 	e = ((unsigned long int) 65536UL);
 	f = ((unsigned long int) 0UL);
 	g = ((unsigned long int) 0UL);
@@ -29,29 +32,31 @@ int main(int a, char * * b) {
 	n = ((unsigned char) 1U);
 	o = ((unsigned char) 0U);
 	p = ((unsigned char) 0U);
-	r = ((unsigned char *) b[n]);
-	s = &p;
+	q = ((unsigned char) 0U);
+	r = ((unsigned char) 0U);
+	t = ((unsigned char *) b[n]);
+	u = &p;
 
 	if (a == ((int) f)) {
-		printf("Error reading file without required file name argument.", r);
+		printf("Error reading file without required file name argument.", t);
 		return a;
 	}
 
-	q = AvolittyReaderA(d, f, r);
+	s = AvolittyReaderA(d, f, t);
 
-	if (n == q) {
-		printf("Error opening file \"%s\".", r);
+	if (n == s) {
+		printf("Error opening file \"%s\".", t);
 		return a;
 	}
 
 	f = h;
 
 	while (o == p) {
-		q = AvolittyReaderB(c, k, l, m, s);
+		s = AvolittyReaderB(c, k, l, m, u);
 
-		if (o != q) {
-			if (n == q) {
-				printf("Error reading file \"%s\" at byte \"%lu\".", r, f);
+		if (o != s) {
+			if (n == s) {
+				printf("Error reading file \"%s\" at byte \"%lu\".", t, f);
 			}
 
 			return a;
@@ -64,8 +69,19 @@ int main(int a, char * * b) {
 			j++;
 		}
 
-		f += (e + g);
-		i += e;
+		if (f < ((ULONG_MAX - (e + g)) + n)) {
+			f += (e + g);
+		} else {
+			f = ULONG_MAX;
+			q = ((unsigned char) 1U);
+		}
+
+		if (i < ((ULONG_MAX - e) + n)) {
+			i += e;
+		} else {
+			i = ULONG_MAX;
+			r = ((unsigned char) 1U);
+		}
 	}
 
 	return a;

@@ -14,6 +14,7 @@ Create byte arrays from file streams using C89 with a fast and unique file readi
 - Conforms to strict ISO C with -pedantic-errors enabled
 - Error handling for file opening and reading
 - Fast reading speed without compiler optimization
+- Integer overflow protection when calculating bytes read and traversed
 - Large file support on 64-bit systems
 - Memory-safe with well-defined behavior
 - Minified code
@@ -46,7 +47,7 @@ cd avolitty-reader
 The following example uses code from [test/main.c](https://github.com/avolitty/avolitty-reader/blob/main/test/main.c) to read a file with the `AvolittyReaderA()` and `AvolittyReaderB()` functions from [src/avolitty-reader.c](https://github.com/avolitty/avolitty-reader/blob/main/src/avolitty-reader.c).
 
 ``` c
-#include <stddef.h>
+#include <limits.h>
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
@@ -66,8 +67,10 @@ int main(int a, char * * b) {
 	unsigned char o;
 	unsigned char p;
 	unsigned char q;
-	unsigned char * r;
-	unsigned char * s;
+	unsigned char r;
+	unsigned char s;
+	unsigned char * t;
+	unsigned char * u;
 	e = ((unsigned long int) 65536UL);
 	f = ((unsigned long int) 0UL);
 	g = ((unsigned long int) 0UL);
@@ -78,29 +81,31 @@ int main(int a, char * * b) {
 	n = ((unsigned char) 1U);
 	o = ((unsigned char) 0U);
 	p = ((unsigned char) 0U);
-	r = ((unsigned char *) b[n]);
-	s = &p;
+	q = ((unsigned char) 0U);
+	r = ((unsigned char) 0U);
+	t = ((unsigned char *) b[n]);
+	u = &p;
 
 	if (a == ((int) f)) {
-		printf("Error reading file without required file name argument.", r);
+		printf("Error reading file without required file name argument.", t);
 		return a;
 	}
 
-	q = AvolittyReaderA(d, f, r);
+	s = AvolittyReaderA(d, f, t);
 
-	if (n == q) {
-		printf("Error opening file \"%s\".", r);
+	if (n == s) {
+		printf("Error opening file \"%s\".", t);
 		return a;
 	}
 
 	f = h;
 
 	while (o == p) {
-		q = AvolittyReaderB(c, k, l, m, s);
+		s = AvolittyReaderB(c, k, l, m, u);
 
-		if (o != q) {
-			if (n == q) {
-				printf("Error reading file \"%s\" at byte \"%lu\".", r, f);
+		if (o != s) {
+			if (n == s) {
+				printf("Error reading file \"%s\" at byte \"%lu\".", t, f);
 			}
 
 			return a;
@@ -113,8 +118,19 @@ int main(int a, char * * b) {
 			j++;
 		}
 
-		f += (e + g);
-		i += e;
+		if (f < ((ULONG_MAX - (e + g)) + n)) {
+			f += (e + g);
+		} else {
+			f = ULONG_MAX;
+			q = ((unsigned char) 1U);
+		}
+
+		if (i < ((ULONG_MAX - e) + n)) {
+			i += e;
+		} else {
+			i = ULONG_MAX;
+			r = ((unsigned char) 1U);
+		}
 	}
 
 	return a;
@@ -123,7 +139,7 @@ int main(int a, char * * b) {
 
 `AvolittyReaderA()` opens a file stream from a file path for reading.
 
-The return value variable `q` is an `unsigned char` defined as the following error statuses.
+The return value variable `s` is an `unsigned char` defined as the following error statuses.
 
 - `0U` Success.
 - `1U` Error opening file "{file}".
@@ -134,11 +150,11 @@ The variable `c` is a `FILE *` pointer.
 
 The second argument variable `f` is an `unsigned long int` defined as the number of bytes to skip from the beginning of the file.
 
-The third argument variable `r` is an `unsigned char *` string defined from the first command line argument value as a full path name to a file.
+The third argument variable `t` is an `unsigned char *` string defined from the first command line argument value as a full path name to a file.
 
 `AvolittyReaderB()` reads the file and returns chunked data.
 
-The return value variable `q` is an `unsigned char` defined as the following error statuses.
+The return value variable `s` is an `unsigned char` defined as the following error statuses.
 
 - `0U` Success.
 - `1U` Error reading file "{file}" at byte {position}.
@@ -165,7 +181,7 @@ The default value is an empty array and `AvolittyReaderB()` defines it as the by
 
 The array length should match the value of `e` with a default value of `65536UL`.
 
-The fifth argument variable `s` is a pointer to modify the value of the variable `p`.
+The fifth argument variable `u` is a pointer to modify the value of the variable `p`.
 
 The variable `p` is an `unsigned char` defined as the file reading status.
 
@@ -200,4 +216,8 @@ The first command line argument value `file` is the file name to read.
 
 The exact size of bytes traversed including skipped bytes from the initial offset is defined in the variable `f`.
 
+If the exact size of bytes traversed exceeds the maximum integer value allowed in the variable `f`, the variable `q` is defined as `1U`.
+
 The exact size of bytes read excluding skipped bytes from the initial offset is defined in the variable `i`.
+
+If the exact size of bytes read exceeds the maximum integer value allowed in the variable `i`, the variable `r` is defined as `1U`.
