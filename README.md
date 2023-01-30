@@ -50,24 +50,24 @@ The following example uses code from [test/main.c](https://github.com/avolitty/a
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
-int main(int a, char **b) {
-	FILE *c;
-	FILE **d = &c;
+int main(int a, char * * b) {
+	FILE * c;
+	FILE * * d = &c;
 	unsigned long int e;
 	unsigned long int f;
 	unsigned long int g;
 	unsigned long int h;
 	unsigned long int i;
 	unsigned long int j;
-	unsigned long int *k;
-	unsigned long int *l;
+	unsigned long int * k;
+	unsigned long int * l;
 	unsigned char m[((unsigned long int) 65536UL)];
 	unsigned char n;
 	unsigned char o;
 	unsigned char p;
 	unsigned char q;
-	unsigned char *r;
-	unsigned char *s;
+	unsigned char * r;
+	unsigned char * s;
 	e = ((unsigned long int) 65536UL);
 	f = ((unsigned long int) 0UL);
 	g = ((unsigned long int) 0UL);

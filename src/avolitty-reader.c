@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {
+unsigned char AvolittyReaderA(FILE * * a, unsigned long int b, unsigned char * c) {
 	*a = fopen((const char *) c, (const char *) "rb");
 
 	if (*a == ((void *) 0)) {
@@ -14,7 +14,7 @@ unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {
 	return ((unsigned char) 0U);
 }
 
-unsigned char AvolittyReaderB(FILE *a, unsigned long int *b, unsigned long int *c, unsigned char *d, unsigned char *e) {
+unsigned char AvolittyReaderB(FILE * a, unsigned long int * b, unsigned long int * c, unsigned char * d, unsigned char * e) {
 	size_t f;
 	size_t g;
 	size_t h;
