@@ -1,10 +1,9 @@
-#include <stddef.h>
 #include <stdio.h>
 
 unsigned char AvolittyReaderA(FILE **a, unsigned long int b, unsigned char *c) {
 	*a = fopen((const char *) c, (const char *) "rb");
 
-	if (*a == ((int) 0)) {
+	if (*a == ((void *) 0)) {
 		return ((unsigned char) 1U);
 	}
 

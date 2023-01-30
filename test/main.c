@@ -1,4 +1,3 @@
-#include <stddef.h>
 #include <stdio.h>
 #include "../src/avolitty-reader.h"
 
