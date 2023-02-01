@@ -16,35 +16,31 @@ unsigned char AvolittyReaderA(FILE * * a, unsigned long int b, unsigned char * c
 
 unsigned char AvolittyReaderB(FILE * a, unsigned long int * b, unsigned long int * c, unsigned char * d, unsigned char * e) {
 	size_t f;
-	size_t g;
-	size_t h;
-	long i;
-	unsigned long int j;
-	unsigned char k;
-	unsigned char l;
-	f = ((size_t) *b);
-	g = ((size_t) 1);
-	i = ((long) *c);
-	j = ((unsigned long int) 0UL);
-	k = ((unsigned char) 1U);
-	l = ((unsigned char) 0U);
+	long g;
+	unsigned long int h;
+	unsigned char i;
+	unsigned char j;
+	g = ((long) *c);
+	h = ((unsigned long int) 0UL);
+	i = ((unsigned char) 1U);
+	j = ((unsigned char) 0U);
 
-	if (*c != j) {
+	if (*c != h) {
 		fseek(a, (long) *c, (int) SEEK_CUR);
 	}
 
-	h = fread(d, g, f, a);
-	j = ((unsigned long int) h);
+	f = fread(d, (size_t) 1, (size_t) *b, a);
+	h = ((unsigned long int) f);
 
-	if (*b != j) {
-		if (feof(a) == ((int) j)) {
-			l = k;
+	if (*b != h) {
+		if (feof(a) == ((int) h)) {
+			j = i;
 		}
 
-		*b = j;
-		*e = k;
+		*b = h;
+		*e = i;
 		fclose(a);
 	}
 
-	return l;
+	return j;
 }
