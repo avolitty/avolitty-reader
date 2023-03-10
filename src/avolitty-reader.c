@@ -29,7 +29,7 @@ unsigned char AvolittyReaderB(FILE * a, unsigned long int * b, unsigned long int
 		fseek(a, (long) *c, (int) SEEK_CUR);
 	}
 
-	f = fread(d, (size_t) 1, (size_t) *b, a);
+	f = fread(d, (size_t) i, (size_t) *b, a);
 	h = ((unsigned long int) f);
 
 	if (*b != h) {
