@@ -1,17 +1,19 @@
 #include <stdio.h>
 
 unsigned char AvolittyReaderA(FILE * * a, unsigned long int b, unsigned char * c) {
+	unsigned long int d;
+	d = ((unsigned long int) 0UL);
 	*a = fopen((const char *) c, (const char *) "rb");
 
-	if (*a == ((void *) 0)) {
-		return ((unsigned char) 1U);
+	if (*a == ((void *) d)) {
+		d++;
+	} else {
+		if (b != d) {
+			fseek(*a, (long) b, (int) SEEK_SET);
+		}
 	}
 
-	if (b != ((unsigned long int) 0UL)) {
-		fseek(*a, (long) b, (int) SEEK_SET);
-	}
-
-	return ((unsigned char) 0U);
+	return (unsigned char) d;
 }
 
 unsigned char AvolittyReaderB(FILE * a, unsigned long int * b, unsigned long int * c, unsigned char * d, unsigned char * e) {
